@@ -41,15 +41,13 @@ impl RollsGrip {
 }
 
 fn is_roll_movable(grip: &RollsGrip, row: i32, col: i32) -> bool {
-    let mut surrounding_count = 0;
-    for r in row - 1..=row + 1 {
-        for c in col - 1..=col + 1 {
-            if grip.is_roll_exist(r, c) {
-                surrounding_count += 1;
-            }
-        }
-    }
-    surrounding_count - 1 < 4
+    let surrounding_count = (row - 1..=row + 1)
+        .flat_map(|row| (col - 1..=col + 1).map(move |col| (row, col)))
+        .filter(|(r, c)| grip.is_roll_exist(*r, *c))
+        .count()
+        - 1;
+
+    surrounding_count < 4
 }
 
 fn main() {
