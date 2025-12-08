@@ -165,7 +165,7 @@ fn count_timelines_recursive(
         if manifold.is_splitter(&next_pos) {
             splitter_encountered = true;
             timelines += count_timelines_recursive(manifold, memo, curr_pos.step_left());
-            timelines += count_timelines_recursive(manifold, memo, next_pos.step_right());
+            timelines += count_timelines_recursive(manifold, memo, curr_pos.step_right());
             break;
         } else {
             curr_pos = next_pos;
