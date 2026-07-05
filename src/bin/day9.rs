@@ -1,6 +1,4 @@
 ﻿use aoc_2025::assets::read_to_string;
-use std::error::Error;
-use std::pin::pin;
 
 #[derive(Debug)]
 struct Point {
